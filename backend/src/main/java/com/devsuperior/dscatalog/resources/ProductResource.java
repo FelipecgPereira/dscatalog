@@ -46,7 +46,7 @@ public class ProductResource {
 	
 	@PostMapping
 	public ResponseEntity <ProductDTO> insert(@RequestBody ProductDTO dto){
-		dto = service.inset(dto);
+		dto = service.insert(dto);
 		URI uri= ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}")
 				.buildAndExpand(dto.getId())
