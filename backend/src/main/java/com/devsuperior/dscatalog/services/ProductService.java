@@ -59,12 +59,14 @@ public class ProductService {
 	
 	@Transactional
 	public ProductDTO update(Long id,ProductDTO dto) {
-	
+		try {
 			Product entity = repository.getOne(id);
 			copyDTOToEntity(dto, entity);
 			entity = repository.save(entity);
 			return new ProductDTO(entity);
-		
+	} catch (EntityNotFoundException e) {
+		throw new ResourceNotFoundException("Id not found "+ id);
+	}
 	}
 	
 
